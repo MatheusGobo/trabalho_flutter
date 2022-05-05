@@ -91,7 +91,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         ));
         break;
       case 3:
-        Navigator.push(context, MaterialPageRoute(
+        Navigator.pushReplacement(context, MaterialPageRoute(
           builder: (context) => ProfessoresPage(),
         ));
     }

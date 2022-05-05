@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:trabalho_flutter/widget/widgets.dart';
+import 'package:trabalho_flutter/ui/widget/widgets.dart';
 
 class ProfessoresPage extends StatelessWidget {
   const ProfessoresPage({Key? key}) : super(key: key);
