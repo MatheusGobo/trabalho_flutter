@@ -120,25 +120,25 @@ class _CardTeacherState extends State<CardTeacher> {
                 FieldCardApp(
                   width: MediaQuery.of(context).size.width * 0.35,
                   prefix: 'RA: ',
-                  text: '${teacher.ra.toString()}',
+                  text: teacher.ra.toString(),
                 ),
                 Expanded(child: Container()),
                 FieldCardApp(
                   width: MediaQuery.of(context).size.width * 0.5,
                   prefix: 'CPF: ',
-                  text: '${teacher.cpf}',
+                  text: teacher.cpf,
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 3,
             ),
             FieldCardApp(
               width: double.infinity,
               prefix: 'Nome: ',
-              text: '${teacher.name}',
+              text: teacher.name,
             ),
-            SizedBox(
+            const SizedBox(
               height: 3,
             ),
             FieldCardApp(
@@ -149,47 +149,6 @@ class _CardTeacherState extends State<CardTeacher> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class FieldCardApp extends StatelessWidget {
-  final double width;
-  final String prefix;
-  final String text;
-
-  const FieldCardApp({
-    required this.width,
-    required this.prefix,
-    required this.text,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      child: Padding(
-        padding: EdgeInsets.all(8),
-        child: Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(
-                text: prefix,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              TextSpan(
-                text: text,
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      decoration: BoxDecoration(
-          color: Colors.grey[700], borderRadius: BorderRadius.circular(7)),
     );
   }
 }
