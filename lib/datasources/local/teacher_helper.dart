@@ -6,9 +6,9 @@ class TeacherHelper {
   static const sqlCreate = '''
     CREATE TABLE ${Teacher.table} (
       ${Teacher.colRa}       INTEGER PRIMARY KEY,
-      ${Teacher.colName}     TEXT
-      ${Teacher.colCpf}      TEXT
-      ${Teacher.colBornDate} DATETIME
+      ${Teacher.colName}     TEXT,
+      ${Teacher.colCpf}      TEXT,
+      ${Teacher.colBornDate} TEXT
     )    
   ''';
 
@@ -38,5 +38,12 @@ class TeacherHelper {
     );
   }
 
+  Future<List<Teacher>> getTodos() async {
+    Database db = await LocalDatabase().db;
 
+    //List dados = await db.rawQuery('SELECT * FROM $editoraTabela');
+    List dados = await db.query(Teacher.table);
+    return dados.map((e) => Teacher.fromMap(e)).toList();
+
+  }
 }

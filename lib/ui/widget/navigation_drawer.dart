@@ -11,9 +11,14 @@ class NavigationDrawerWidget extends StatelessWidget {
         children: [
           UserAccountsDrawerHeader(
             decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    colors: [Colors.blue, Colors.lightBlue])),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                colors: [
+                  Colors.blue,
+                  Colors.lightBlue,
+                ],
+              ),
+            ),
             currentAccountPicture: Image.asset('assets/images/unipar_logo.png'),
             accountName: const Text(
               'Administrador',
@@ -86,14 +91,18 @@ class NavigationDrawerWidget extends StatelessWidget {
   void selectedItem(BuildContext context, int index) {
     switch (index) {
       case 0:
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => HomePage(),
-        ));
+        Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ));
         break;
       case 3:
-        Navigator.pushReplacement(context, MaterialPageRoute(
-          builder: (context) => TeacherPage(),
-        ));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CardTeacher(),
+            ));
     }
   }
 }

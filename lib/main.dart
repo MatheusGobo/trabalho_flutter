@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:trabalho_flutter/app_theme.dart';
 import 'package:trabalho_flutter/ui/pages/pages.dart';
 
@@ -19,6 +20,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeClass.darkTheme,
       darkTheme: ThemeClass.darkTheme,
       home: const HomePage(),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate
+      ],
+      supportedLocales: [
+        const Locale('pt')
+      ],
     );
   }
 }

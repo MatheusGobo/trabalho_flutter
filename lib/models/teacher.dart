@@ -14,9 +14,9 @@ class Teacher {
 
   factory Teacher.fromMap(Map map) {
     return Teacher(
-        ra:        int.parse(map[colRa].toString()),
-        name:      map[colName],
-        cpf:       map[colCpf],
+        ra:       int.parse(map[colRa].toString()),
+        name:     map[colName],
+        cpf:      map[colCpf],
         bornDate: DateTime.parse(map[colBornDate])
     );
   }
@@ -26,7 +26,7 @@ class Teacher {
       colRa        : ra,
       colName      : name,
       colCpf       : cpf,
-      colBornDate : bornDate
+      colBornDate  : bornDate.toIso8601String()
     };
   }
 
