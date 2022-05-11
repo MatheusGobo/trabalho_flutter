@@ -19,21 +19,20 @@ class FloatingButtonApp extends StatelessWidget {
     return SpeedDial(
       backgroundColor: ThemeClass.primaryColor,
       animatedIcon: AnimatedIcons.menu_close,
-      buttonSize: Size(50, 50),
-      animatedIconTheme: IconThemeData(
+      animatedIconTheme: const IconThemeData(
         color: Colors.white,
       ),
       children: [
         SpeedDialChild(
           backgroundColor: Colors.lightBlue,
-          child: Icon(Icons.save),
+          child: const Icon(Icons.save),
           label: 'Salvar',
           onTap: save,
         ),
         SpeedDialChild(
           visible: showDelete,
           backgroundColor: Colors.redAccent,
-          child: Icon(Icons.delete),
+          child: const Icon(Icons.delete),
           label: 'Excluir',
           onTap: delete,
         ),

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:sqflite/sqflite.dart';
 import 'package:trabalho_flutter/datasources/local/local.dart';
 import 'package:trabalho_flutter/models/models.dart';
@@ -12,7 +14,7 @@ class TeacherHelper {
     )    
   ''';
 
-  Future<Teacher> inserir(Teacher teacher) async {
+  Future<Teacher> insert(Teacher teacher) async {
     Database db = await LocalDatabase().db;
 
     await db.insert(Teacher.table, teacher.toMap());
@@ -38,12 +40,22 @@ class TeacherHelper {
     );
   }
 
-  Future<List<Teacher>> getTodos() async {
+  Future<List<Teacher>> getAll() async {
     Database db = await LocalDatabase().db;
 
     //List dados = await db.rawQuery('SELECT * FROM $editoraTabela');
-    List dados = await db.query(Teacher.table);
-    return dados.map((e) => Teacher.fromMap(e)).toList();
+    List result = await db.query(Teacher.table);
 
+    return result.map((e) => Teacher.fromMap(e)).toList();
+  }
+
+  Future<String> getAllJson() async {
+    Database db = await LocalDatabase().db;
+
+    List result = await db.query(Teacher.table);
+
+    result.map((e) => Teacher.fromMap(e)).toList();
+
+    return jsonEncode(result);
   }
 }
