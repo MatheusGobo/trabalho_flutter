@@ -23,7 +23,7 @@ class _CardTeacherState extends State<CardTeacher> {
         centerTitle: true,
       ),
       body: FutureBuilder(
-        future: _teacherHelper.getTodos(),
+        future: _teacherHelper.getAll(),
         //Metodo que irá retorar os dados para o FutureBuilder
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
@@ -40,7 +40,9 @@ class _CardTeacherState extends State<CardTeacher> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add,
+          color: Colors.white,
+        ),
         backgroundColor: ThemeClass.primaryColor,
         onPressed: _openTeacher,
       ),
@@ -103,7 +105,8 @@ class _CardTeacherState extends State<CardTeacher> {
               _openTeacher(teacher: teacher[index]);
             },
           );
-        });
+        },
+    );
   }
 
   Widget _createItemList(BuildContext context, Teacher teacher) {

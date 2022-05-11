@@ -29,19 +29,26 @@ class TextInputApp extends StatelessWidget {
       validator: validator,
       keyboardType: keyboardType,
       decoration: InputDecoration(
-          fillColor: Colors.white,
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: ThemeClass.primaryColor, width: 2)),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(20),
-            borderSide: BorderSide(color: ThemeClass.secondColor),
+        fillColor: Colors.white,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(
+            color: ThemeClass.primaryColor,
+            width: 2,
           ),
-          labelText: labelText,
-          labelStyle: TextStyle(
-            color: Colors.white60,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(20),
+          borderSide: BorderSide(
+            color: ThemeClass.secondColor,
           ),
-          hintText: hintText ?? labelText),
+        ),
+        labelText: labelText,
+        labelStyle: const TextStyle(
+          color: Colors.white60,
+        ),
+        hintText: hintText ?? labelText,
+      ),
       inputFormatters: mask,
       readOnly: readOnly,
     );
