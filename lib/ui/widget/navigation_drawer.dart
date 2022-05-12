@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trabalho_flutter/ui/pages/cards/cards.dart';
 import 'package:trabalho_flutter/ui/pages/pages.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -110,7 +111,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DisciplinePage(),
+              builder: (context) => CardDiscipline(),
             ),
         );
         break;

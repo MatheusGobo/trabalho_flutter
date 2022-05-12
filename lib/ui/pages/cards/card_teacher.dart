@@ -63,55 +63,54 @@ class _CardTeacherState extends State<CardTeacher> {
 
   Widget _createList(BuildContext context, List<Teacher> teacher) {
     return ListView.builder(
-        padding: EdgeInsets.all(8),
-        itemCount: teacher.length,
-        itemBuilder: (context, index) {
-          return Dismissible(
-            key: UniqueKey(),
-            direction: DismissDirection.horizontal,
-            child: _createItemList(context, teacher[index]),
-            background: Container(
-              color: Colors.green[300],
-              child: Row(
-                children: const [
-                  Icon(
-                    Icons.edit_outlined,
-                    color: Colors.white,
-                  ),
-                  Text(
-                    'Editar',
-                    style: TextStyle(color: Colors.white),
-                  )
-                ],
-              ),
+      padding: EdgeInsets.all(8),
+      itemCount: teacher.length,
+      itemBuilder: (context, index) {
+        return Dismissible(
+          key: UniqueKey(),
+          direction: DismissDirection.horizontal,
+          child: _createItemList(context, teacher[index]),
+          background: Container(
+            color: Colors.green[300],
+            child: Row(
+              children: const [
+                Icon(
+                  Icons.edit_outlined,
+                  color: Colors.white,
+                ),
+                Text(
+                  'Editar',
+                  style: TextStyle(color: Colors.white),
+                )
+              ],
             ),
-            secondaryBackground: Container(
-              color: Colors.green[300],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
-                  Text(
-                    'Editar',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Icon(
-                    Icons.edit_outlined,
-                    color: Colors.white,
-                  ),
-                ],
-              ),
+          ),
+          secondaryBackground: Container(
+            color: Colors.green[300],
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: const [
+                Text(
+                  'Editar',
+                  style: TextStyle(color: Colors.white),
+                ),
+                Icon(
+                  Icons.edit_outlined,
+                  color: Colors.white,
+                ),
+              ],
             ),
-            onDismissed: (DismissDirection direction) {
-              _openTeacher(teacher: teacher[index]);
-            },
-          );
-        },
+          ),
+          onDismissed: (DismissDirection direction) {
+            _openTeacher(teacher: teacher[index]);
+          },
+        );
+      },
     );
   }
 
   Widget _createItemList(BuildContext context, Teacher teacher) {
-    final _raController = TextEditingController();
-    _raController.text = teacher.ra.toString();
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),

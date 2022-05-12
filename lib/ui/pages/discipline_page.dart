@@ -38,11 +38,12 @@ class _DisciplinePageState extends State<DisciplinePage> {
   @override
   void initState() {
     super.initState();
+    getTeachers();
+
     if (widget.discipline != null) {
       _nameController.text = widget.discipline!.name;
-      //_cpfController.text = widget.teacher!.cpf;
+      _teacherSelect       = widget.discipline!.teacher;
     }
-    getTeachers();
   }
 
   @override
@@ -135,8 +136,7 @@ class _DisciplinePageState extends State<DisciplinePage> {
         return;
       }
 
-      if (widget.discipline == null ||
-          _nameController.text != widget.discipline!.name.toString()) {
+      if (widget.discipline == null) {
         _disciplineHelper.insert(
           Discipline(
             name: _nameController.text,
