@@ -40,6 +40,19 @@ class TeacherHelper {
     );
   }
 
+  Future<Teacher> getByRa(int ra) async{
+    Database db = await LocalDatabase().db;
+
+    //List dados = await db.rawQuery('SELECT * FROM $editoraTabela');
+    List result = await db.query(
+      Teacher.table,
+      where: '${Teacher.colRa} = ?',
+      whereArgs: [ra]
+    );
+
+    return result.map((e) => Teacher.fromMap(e)).toList()[1];
+  }
+
   Future<List<Teacher>> getAll() async {
     Database db = await LocalDatabase().db;
 

@@ -6,7 +6,7 @@ class DisciplineHelper {
   static const sqlCreate = '''
     CREATE TABLE ${Discipline.table} (
       ${Discipline.colId}       INTEGER PRIMARY KEY AUTOINCREMENT,
-      ${Discipline.colName}     STRING PRIMARY KEY,
+      ${Discipline.colName}     STRING,
       ${Discipline.colTeacher}  INTEGER,
       FOREIGN KEY(${Discipline.colTeacher}) REFERENCES ${Teacher.table}(${Teacher.colRa})
     )
@@ -40,8 +40,19 @@ class DisciplineHelper {
   Future<List<Discipline>> getAll() async {
     Database db = await LocalDatabase().db;
 
-    //List dados = await db.rawQuery('SELECT * FROM $editoraTabela');
-    List dados = await db.query(Discipline.table);
+    List dados = await db.rawQuery('''
+      SELECT ${Discipline.table}.${Discipline.colId},
+             ${Discipline.table}.${Discipline.colName},
+             ${Discipline.table}.${Discipline.colTeacher},
+             ${Teacher.table}.${Teacher.colName} AS ${Discipline.colNameTeacher}
+        FROM ${Discipline.table}
+       INNER JOIN ${Teacher.table} on (${Teacher.table}.${Teacher.colRa} = ${Discipline.table}.${Discipline.colTeacher})
+    ''');
+
+
+    /*List dados = await db.query(
+      Discipline.table,
+    );*/
     return dados.map((e) => Discipline.fromMap(e)).toList();
 
   }

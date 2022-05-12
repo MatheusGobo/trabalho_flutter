@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.trabalho_flutter">
    <application
-        android:label="trabalho_flutter"
+        android:label="Unipar - CNF"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
