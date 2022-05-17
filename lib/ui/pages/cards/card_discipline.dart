@@ -118,18 +118,24 @@ class _CardDisciplineState extends State<CardDiscipline> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            FieldCardApp(
-              width: double.infinity,
-              prefix: 'Nome: ',
-              text: discipline.name,
+            Row(
+              children: [
+                FieldCardApp(
+                  prefix: 'Nome: ',
+                  text: discipline.name,
+                ),
+              ],
             ),
             const SizedBox(
-              height: 3,
+              height: 10,
             ),
-            FieldCardApp(
-              width: double.infinity,
-              prefix: 'Professor: ',
-              text: discipline.nameTeacher!,
+            Row(
+              children: [
+                FieldCardApp(
+                  prefix: 'Professor: ',
+                  text: discipline.nameTeacher!,
+                ),
+              ],
             ),
           ],
         ),

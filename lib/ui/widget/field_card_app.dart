@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:trabalho_flutter/app_theme.dart';
 
 class FieldCardApp extends StatelessWidget {
-  final double width;
   final String prefix;
   final String text;
 
   const FieldCardApp({
-    required this.width,
     required this.prefix,
     required this.text,
     Key? key,
@@ -14,29 +13,25 @@ class FieldCardApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      child: Padding(
-        padding: EdgeInsets.all(8),
-        child: Text.rich(
-          TextSpan(
-            children: [
-              TextSpan(
-                text: prefix,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              TextSpan(
-                text: text,
-                style: TextStyle(
-                  fontSize: 14,
-                ),
-              ),
-            ],
+    return Expanded(
+      child: InputDecorator(
+        decoration: InputDecoration(
+          labelText: prefix,
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(
+              color: ThemeClass.secondColor,
+            ),
           ),
+          fillColor: Colors.white,
         ),
+        child: Text(
+            text,
+            style: TextStyle(
+              fontSize: 16,
+            ),
+          ),
       ),
-      decoration: BoxDecoration(
-          color: Colors.grey[700], borderRadius: BorderRadius.circular(7)),
     );
   }
 }

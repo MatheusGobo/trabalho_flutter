@@ -20,11 +20,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeClass.darkTheme,
       darkTheme: ThemeClass.darkTheme,
       home: const HomePage(),
-      localizationsDelegates: [
+      localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate
       ],
-      supportedLocales: [
-        const Locale('pt')
+      supportedLocales: const [
+        Locale('pt')
       ],
     );
   }

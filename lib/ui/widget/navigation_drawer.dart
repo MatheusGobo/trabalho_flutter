@@ -115,6 +115,14 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
         );
         break;
+      case 6:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ClassPage(),
+          ),
+        );
+        break;
     }
   }
 }
