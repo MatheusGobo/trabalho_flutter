@@ -17,7 +17,6 @@ class DisciplinePage extends StatefulWidget {
 }
 
 class _DisciplinePageState extends State<DisciplinePage> {
-  DateTime selectedDate = DateTime.now();
 
   final _disciplineHelper = DisciplineHelper();
   final _teacherHelper = TeacherHelper();
@@ -112,7 +111,9 @@ class _DisciplinePageState extends State<DisciplinePage> {
                       },
                       value: _teacherSelect,
                     ),
-                  )),
+                  ),
+              ),
+              Text(data.toString())
             ],
           ),
         ),

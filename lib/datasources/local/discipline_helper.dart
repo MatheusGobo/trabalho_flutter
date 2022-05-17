@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:sqflite/sqflite.dart';
 import 'package:trabalho_flutter/datasources/local/local.dart';
 import 'package:trabalho_flutter/models/models.dart';
@@ -55,5 +57,15 @@ class DisciplineHelper {
     );*/
     return dados.map((e) => Discipline.fromMap(e)).toList();
 
+  }
+
+  Future<String> getAllJson() async {
+    Database db = await LocalDatabase().db;
+
+    List result = await db.query(Discipline.table);
+
+    result.map((e) => Discipline.fromMap(e)).toList();
+
+    return jsonEncode(result);
   }
 }

@@ -158,8 +158,7 @@ class _TeacherPageState extends State<TeacherPage> {
 
   void _save() {
     if (_formKey.currentState!.validate()) {
-      if (widget.teacher == null ||
-          _raController.text != widget.teacher!.ra.toString()) {
+      if (widget.teacher == null) {
         _teacherHelper.insert(
           Teacher(
             ra: int.parse(_raController.text),

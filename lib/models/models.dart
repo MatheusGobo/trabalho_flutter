@@ -1,2 +1,4 @@
 export 'teacher.dart';
 export 'discipline.dart';
+export 'class_main.dart';
+export 'class_discipline.dart';

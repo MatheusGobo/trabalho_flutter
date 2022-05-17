@@ -40,7 +40,8 @@ class _CardTeacherState extends State<CardTeacher> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add,
+        child: const Icon(
+          Icons.add,
           color: Colors.white,
         ),
         backgroundColor: ThemeClass.primaryColor,
@@ -110,7 +111,6 @@ class _CardTeacherState extends State<CardTeacher> {
   }
 
   Widget _createItemList(BuildContext context, Teacher teacher) {
-
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(16),
@@ -120,33 +120,40 @@ class _CardTeacherState extends State<CardTeacher> {
             Row(
               children: [
                 FieldCardApp(
-                  width: MediaQuery.of(context).size.width * 0.35,
                   prefix: 'RA: ',
                   text: teacher.ra.toString(),
                 ),
-                Expanded(child: Container()),
+                const SizedBox(
+                  width: 10,
+                ),
                 FieldCardApp(
-                  width: MediaQuery.of(context).size.width * 0.5,
                   prefix: 'CPF: ',
                   text: teacher.cpf,
                 ),
               ],
             ),
             const SizedBox(
-              height: 3,
+              height: 10,
             ),
-            FieldCardApp(
-              width: double.infinity,
-              prefix: 'Nome: ',
-              text: teacher.name,
+            Row(
+              children: [
+                FieldCardApp(
+                  prefix: 'Nome: ',
+                  text: teacher.name,
+                ),
+              ],
             ),
             const SizedBox(
-              height: 3,
+              height: 10,
             ),
-            FieldCardApp(
-              width: double.infinity,
-              prefix: 'Data de Nascimento: ',
-              text: '${SelectDate().formatTextDate(date: teacher.bornDate)}',
+            Row(
+              children: [
+                FieldCardApp(
+                  prefix: 'Data de Nascimento: ',
+                  text:
+                      '${SelectDate().formatTextDate(date: teacher.bornDate)}',
+                ),
+              ],
             ),
           ],
         ),
