@@ -113,7 +113,6 @@ class _DisciplinePageState extends State<DisciplinePage> {
                     ),
                   ),
               ),
-              Text(data.toString())
             ],
           ),
         ),

@@ -13,11 +13,10 @@ class CardDiscipline extends StatefulWidget {
 }
 
 class _CardDisciplineState extends State<CardDiscipline> {
-  final _teacherHelper = TeacherHelper();
-  
+
   @override
   Widget build(BuildContext context) {
-    final _disciplineHelper = DisciplineHelper();    
+    final _disciplineHelper = DisciplineHelper();
     return Scaffold(
       drawer: NavigationDrawerWidget(),
       appBar: AppBar(
@@ -121,7 +120,7 @@ class _CardDisciplineState extends State<CardDiscipline> {
             Row(
               children: [
                 FieldCardApp(
-                  prefix: 'Nome: ',
+                  prefix: 'Nome',
                   text: discipline.name,
                 ),
               ],
@@ -132,7 +131,7 @@ class _CardDisciplineState extends State<CardDiscipline> {
             Row(
               children: [
                 FieldCardApp(
-                  prefix: 'Professor: ',
+                  prefix: 'Professor',
                   text: discipline.nameTeacher!,
                 ),
               ],
@@ -141,10 +140,5 @@ class _CardDisciplineState extends State<CardDiscipline> {
         ),
       ),
     );
-  }
-
-  Future<String> nameTeacher(int ra) async{
-    Teacher teacher = await _teacherHelper.getByRa(ra);
-    return teacher.name;
   }
 }
