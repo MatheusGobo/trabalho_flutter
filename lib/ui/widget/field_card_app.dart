@@ -16,6 +16,9 @@ class FieldCardApp extends StatelessWidget {
     return Expanded(
       child: InputDecorator(
         decoration: InputDecoration(
+          labelStyle: const TextStyle(
+            fontSize: 18,
+          ),
           labelText: prefix,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
