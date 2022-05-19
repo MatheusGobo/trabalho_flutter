@@ -23,20 +23,17 @@ class LocalDatabase {
 
     return await openDatabase(
         pathDb,
-        version: 4, //TODO aqui é a Versão
+        version: 5, //TODO aqui é a Versão
         onCreate: (Database db, int version) async {
           await db.execute(TeacherHelper.sqlCreate);
           await db.execute(DisciplineHelper.sqlCreate);
           await db.execute(ClassMainHelper.sqlCreate);
           await db.execute(ClassDisciplineHelper.sqlCreate);
+          await db.execute(StudentMainHelper.sqlCreate);
         },
         onUpgrade: (Database db, int oldVersion, int newVersion) async {
-          if (oldVersion == 8) {
-            await db.execute(DisciplineHelper.sqlCreate);
-          }
-          if (oldVersion == 8) {
-            await db.execute(ClassMainHelper.sqlCreate);
-            await db.execute(ClassDisciplineHelper.sqlCreate);
+          if (oldVersion == 4) {
+            await db.execute(StudentMainHelper.sqlCreate);
           }
           //TODO Aqui se coloca demais tabelas, não pode esquecer de mudar versão do banco
         },
