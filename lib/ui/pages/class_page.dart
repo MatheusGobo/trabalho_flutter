@@ -48,20 +48,35 @@ class _ClassPageState extends State<ClassPage> {
   List<String> disciplinesName = [];
   List dataDiscipline = [];
 
-  Future getTeachers() async {
+  Future getDisciplines() async {
     List result = json.decode(await _disciplineHelper.getAllJson());
     setState(() {
       dataDiscipline = result;
     });
   }
 
+  Future getLoadDisciplines(int classId) async {
+    List<ClassDiscipline> result = await _classDisciplineHelper.getAllByClass(classId);
+    setState(() {
+        result.forEach((element) {
+          disciplinesId.add(element.idDiscipline.toString());
+          disciplinesName.add(element.nameDiscipline!);
+        });
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
-    getTeachers();
+    getDisciplines();
 
     if (widget.classMain != null) {
       _nameController.text = widget.classMain!.name;
+      _periodoSelect       = widget.classMain!.period;
+      _regimeSelect        = widget.classMain!.regime;
+
+      getLoadDisciplines(widget.classMain!.id!);
     }
   }
 
@@ -91,7 +106,7 @@ class _ClassPageState extends State<ClassPage> {
                 const SizedBox(height: 10),
                 InputDecorator(
                   decoration: InputDecoration(
-                    labelText: 'Períoo',
+                    labelText: 'Período',
                     errorText: _periodoVazio ? 'Informar o Período' : null,
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -221,7 +236,7 @@ class _ClassPageState extends State<ClassPage> {
                                   _isSelecName ? disciplinesName.remove(disciplina['name'])
                                                : disciplinesName.add(disciplina['name']);
                                   //This rebuilds the StatefulWidget to update the button's text
-                                  setState(() {});
+                                  setState(() { });
                                   //This rebuilds the dropdownMenu Widget to update the check mark
                                   menuSetState(() {});
                                 },
@@ -312,6 +327,7 @@ class _ClassPageState extends State<ClassPage> {
 
       return;
     }
+
     if (_formKey.currentState!.validate()) {
       if (widget.classMain == null) {
         int classMainId = await _classHelper.insert(
@@ -321,8 +337,6 @@ class _ClassPageState extends State<ClassPage> {
             period: _periodoSelect!
           ),
         );
-
-        print('2222   matheus hehehe : ' +  classMainId.toString());
 
         disciplinesId.forEach((element) {
           _classDisciplineHelper.insert(

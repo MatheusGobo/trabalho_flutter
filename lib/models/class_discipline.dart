@@ -1,20 +1,23 @@
 class ClassDiscipline {
   static const table           = 'classDiscipline';
   static const colId           = 'id';
-  static const colIdClass      = 'id_class';
-  static const colIdDiscipline = 'id_discipline';
+  static const colIdClass      = 'idClass';
+  static const colIdDiscipline = 'idDiscipline';
+  static const colNameDiscipline = 'nameDiscipline';
 
   int?     id;
   int      idClass;
   int      idDiscipline;
+  String?  nameDiscipline;
 
-  ClassDiscipline({this.id, required this.idClass, required this.idDiscipline});
+  ClassDiscipline({this.id, required this.idClass, required this.idDiscipline, this.nameDiscipline});
 
   factory ClassDiscipline.fromMap(Map map) {
     return ClassDiscipline(
-        id:           int.parse(map[colId].toString()),
-        idClass:      int.parse(map[colIdClass].toString()),
-        idDiscipline: int.parse(map[colIdDiscipline].toString()),
+        id:             int.parse(map[colId].toString()),
+        idClass:        int.parse(map[colIdClass].toString()),
+        idDiscipline:   int.parse(map[colIdDiscipline].toString()),
+        nameDiscipline: map[colNameDiscipline],
     );
   }
 
