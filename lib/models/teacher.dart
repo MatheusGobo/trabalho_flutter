@@ -1,9 +1,9 @@
 class Teacher {
   static const table         = 'teacher';
-  static const colRa        = 'ra';
-  static const colName      = 'name';
-  static const colCpf       = 'cpf';
-  static const colBornDate = 'born_date';
+  static const colRa         = 'ra';
+  static const colName       = 'name';
+  static const colCpf        = 'cpf';
+  static const colBornDate   = 'born_date';
 
   int      ra;
   String   name;
