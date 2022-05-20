@@ -93,34 +93,42 @@ class NavigationDrawerWidget extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
+          context,
+          MaterialPageRoute(
+            builder: (context) => HomePage(),
+          ),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => FrequencePage(),
+          ),
         );
         break;
       case 3:
         Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CardTeacher(),
-            ),
+          context,
+          MaterialPageRoute(
+            builder: (context) => CardTeacher(),
+          ),
         );
         break;
       case 4:
         Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CardStudent(),
-            ),
-      );
-      break;
+          context,
+          MaterialPageRoute(
+            builder: (context) => CardStudent(),
+          ),
+        );
+        break;
       case 5:
         Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => CardDiscipline(),
-            ),
+          context,
+          MaterialPageRoute(
+            builder: (context) => CardDiscipline(),
+          ),
         );
         break;
       case 6:

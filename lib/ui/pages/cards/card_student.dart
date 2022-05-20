@@ -120,14 +120,14 @@ class _CardStudentState extends State<CardStudent> {
             Row(
               children: [
                 FieldCardApp(
-                  prefix: 'RA: ',
+                  prefix: 'RA',
                   text: student.ra.toString(),
                 ),
                 const SizedBox(
                   width: 10,
                 ),
                 FieldCardApp(
-                  prefix: 'CPF: ',
+                  prefix: 'CPF',
                   text: student.cpf,
                 ),
               ],
@@ -138,7 +138,7 @@ class _CardStudentState extends State<CardStudent> {
             Row(
               children: [
                 FieldCardApp(
-                  prefix: 'Nome: ',
+                  prefix: 'Nome',
                   text: student.name,
                 ),
               ],
@@ -149,7 +149,7 @@ class _CardStudentState extends State<CardStudent> {
             Row(
               children: [
                 FieldCardApp(
-                  prefix: 'Turma: ',
+                  prefix: 'Turma',
                   text: student.className!,
                 ),
               ],
@@ -160,7 +160,7 @@ class _CardStudentState extends State<CardStudent> {
             Row(
               children: [
                 FieldCardApp(
-                  prefix: 'Data de Nascimento: ',
+                  prefix: 'Data de Nascimento',
                   text:
                   '${SelectDate().formatTextDate(date: student.DtNasc)}',
                 ),
@@ -168,9 +168,45 @@ class _CardStudentState extends State<CardStudent> {
                   width: 5,
                 ),
                 FieldCardApp(
-                  prefix: 'Data de Matricula: ',
+                  prefix: 'Data de Matricula',
                   text:
                   '${SelectDate().formatTextDate(date: student.DtMatric)}',
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                FieldCardApp(
+                  prefix: 'Status',
+                  text: approvedStudent(
+                    percentFreq: student.frequence!,
+                    media: 60,
+                  ) ? 'Reprovado' : 'Aprovado',
+                  textColor: approvedStudent(
+                    percentFreq: student.frequence!,
+                    media: 60, // TODO Tem que pegar o certo depois de implementado
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                FieldCardApp(
+                  prefix: 'Média: ',
+                  text: 'Implementar', //TODO Retirar depois que implementar
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                FieldCardApp(
+                  prefix: 'Frequência',
+                  text: '${student.frequence}%',
                 ),
               ],
             ),
@@ -178,5 +214,15 @@ class _CardStudentState extends State<CardStudent> {
         ),
       ),
     );
+  }
+
+  bool approvedStudent({required double percentFreq, required double media}) {
+    if (percentFreq < 70) {
+      return false;
+    } else if (media < 60) {
+      return false;
+    }
+
+    return true;
   }
 }

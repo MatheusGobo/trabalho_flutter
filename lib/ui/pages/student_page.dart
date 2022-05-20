@@ -273,15 +273,6 @@ class _StudentPageState extends State<StudentPage> {
         }
 
         if (widget.studentMain == null) {
-          Fluttertoast.showToast(
-            msg: "data nasce = "+ selectedDateNasc.toString()+"data matric = "+selectedDateMatric.toString(),
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: ThemeClass.fifthColor,
-            textColor: Colors.white,
-            fontSize: 16.0,
-          );
           _studentHelper.insert(
             StudentMain(
               ra: int.parse(_raController.text),
@@ -289,7 +280,7 @@ class _StudentPageState extends State<StudentPage> {
               name: _nameController.text,
               DtNasc: selectedDateNasc,
               DtMatric: selectedDateMatric,
-              classe: _classSelect,
+              classe: _classSelect!,
             ),
           );
         } else {

@@ -30,10 +30,11 @@ class LocalDatabase {
           await db.execute(ClassMainHelper.sqlCreate);
           await db.execute(ClassDisciplineHelper.sqlCreate);
           await db.execute(StudentMainHelper.sqlCreate);
+          await db.execute(FrequenceHelper.sqlCreate);
         },
         onUpgrade: (Database db, int oldVersion, int newVersion) async {
-          if (oldVersion == 4) {
-            await db.execute(StudentMainHelper.sqlCreate);
+          if (oldVersion == 5) {
+            await db.execute(FrequenceHelper.sqlCreate);
           }
           //TODO Aqui se coloca demais tabelas, não pode esquecer de mudar versão do banco
         },

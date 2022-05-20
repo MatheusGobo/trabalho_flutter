@@ -8,17 +8,19 @@ class StudentMain {
   static const colDtMatric  = 'dtMatric';
   static const colClass     = 'classe';
   static const colClassName = 'className';
+  static const colFreq      = 'frequence';
 
   int?       id;
-  int?       ra;
+  int        ra;
   String     cpf;
   String     name;
   DateTime   DtNasc;
   DateTime   DtMatric;
-  int?       classe;
+  int        classe;
   String?    className;
+  double?    frequence;
 
-  StudentMain({this.id, this.ra, required this.name, required this.cpf, required this.DtNasc, required this.DtMatric, this.classe, this.className});
+  StudentMain({this.id, required this.ra, required this.name, required this.cpf, required this.DtNasc, required this.DtMatric, required this.classe, this.className, this.frequence});
 
   factory StudentMain.fromMap(Map map) {
     return StudentMain(
@@ -30,6 +32,7 @@ class StudentMain {
         DtMatric:  DateTime.parse(map[colDtMatric]),
         classe:    int.parse(map[colClass].toString()),
         className: map[colClassName],
+        frequence: double.parse(map[colFreq].toString()),
     );
   }
 

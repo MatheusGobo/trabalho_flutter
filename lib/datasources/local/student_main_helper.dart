@@ -24,7 +24,6 @@ class StudentMainHelper {
     return studentMain;
   }
 
-
   Future<StudentMain> update(StudentMain studentMain) async {
     Database db = await LocalDatabase().db;
 
@@ -48,6 +47,9 @@ class StudentMainHelper {
   Future<List<StudentMain>> getAll() async {
     Database db = await LocalDatabase().db;
 
+    List dados2 = await db.query(Frequence.table);
+    print('freq = ' + dados2.toString());
+
     List dados = await db.rawQuery('''
       SELECT ${StudentMain.table}.${StudentMain.colId},
              ${StudentMain.table}.${StudentMain.colRa},
@@ -56,12 +58,38 @@ class StudentMainHelper {
              ${StudentMain.table}.${StudentMain.colDtNasc},
              ${StudentMain.table}.${StudentMain.colDtMatric},
              ${StudentMain.table}.${StudentMain.colClass},
-             ${ClassMain.table}.${ClassMain.colName} AS ${StudentMain.colClassName}
+             ${ClassMain.table}.${ClassMain.colName} AS ${StudentMain.colClassName},
+             ${Frequence.table}.${Frequence.colPercent} AS ${StudentMain.colFreq}
         FROM ${StudentMain.table}
-       INNER JOIN ${ClassMain.table} on (${ClassMain.table}.${ClassMain.colId} = ${StudentMain.table}.${ClassMain.colId})
+       INNER JOIN ${ClassMain.table} ON (${ClassMain.table}.${ClassMain.colId} = ${StudentMain.table}.${StudentMain.colClass})
+        LEFT JOIN ${Frequence.table} ON (${Frequence.table}.${Frequence.colStudent} = ${StudentMain.table}.${StudentMain.colId})
     ''');
 
     return dados.map((e) => StudentMain.fromMap(e)).toList();
+
+  }
+
+  Future<String> getByClassJson({required int classId}) async {
+    Database db = await LocalDatabase().db;
+
+    List dados = await db.rawQuery("""
+      SELECT ${StudentMain.table}.${StudentMain.colId},
+             ${StudentMain.table}.${StudentMain.colRa},
+             ${StudentMain.table}.${StudentMain.colCpf},
+             ${StudentMain.table}.${StudentMain.colName},
+             ${StudentMain.table}.${StudentMain.colDtNasc},
+             ${StudentMain.table}.${StudentMain.colDtMatric},
+             ${StudentMain.table}.${StudentMain.colClass},
+             ${ClassMain.table}.${ClassMain.colName} AS ${StudentMain.colClassName},
+             0 AS ${StudentMain.colFreq}
+        FROM ${StudentMain.table} 
+       INNER JOIN ${ClassMain.table} on (${ClassMain.table}.${ClassMain.colId} = ${StudentMain.table}.${StudentMain.colClass})
+       WHERE ${StudentMain.table}.${StudentMain.colClass} = ${classId}
+    """);
+
+    dados.map((e) => StudentMain.fromMap(e)).toList();
+
+    return jsonEncode(dados);
 
   }
 
