@@ -31,6 +31,7 @@ class LocalDatabase {
           await db.execute(ClassDisciplineHelper.sqlCreate);
           await db.execute(StudentMainHelper.sqlCreate);
           await db.execute(FrequenceHelper.sqlCreate);
+          await db.execute(GradeHelper.sqlCreate);
         },
         onUpgrade: (Database db, int oldVersion, int newVersion) async {
           if (oldVersion == 5) {
