@@ -62,6 +62,23 @@ class ClassMainHelper {
     return result.map((e) => ClassMain.fromMap(e)).toList();
   }
 
+  Future<ClassMain> getById({required int classId}) async {
+    Database db = await LocalDatabase().db;
+
+    List result = await db.rawQuery('''
+      SELECT ${ClassMain.table}.${ClassMain.colId},
+             ${ClassMain.table}.${ClassMain.colName},
+             ${ClassMain.table}.${ClassMain.colPeriod},
+             ${ClassMain.table}.${ClassMain.colRegime},
+             NULL ${ClassMain.colDiciplines} 
+        FROM ${ClassMain.table}
+       WHERE ${ClassMain.table}.${ClassMain.colId} = ${classId}
+    ''');
+    //List result = await db.query(ClassMain.table);
+
+    return result.map((e) => ClassMain.fromMap(e)).first;
+  }
+
   String getRegime(int regime) {
     switch (regime) {
       case 1:

@@ -9,6 +9,7 @@ class StudentMain {
   static const colClass     = 'classe';
   static const colClassName = 'className';
   static const colFreq      = 'frequence';
+  static const colAverage   = 'average';
 
   int?       id;
   int        ra;
@@ -19,8 +20,18 @@ class StudentMain {
   int        classe;
   String?    className;
   double?    frequence;
+  double?    average;
 
-  StudentMain({this.id, required this.ra, required this.name, required this.cpf, required this.DtNasc, required this.DtMatric, required this.classe, this.className, this.frequence});
+  StudentMain({this.id,
+               required this.ra,
+               required this.name,
+               required this.cpf,
+               required this.DtNasc,
+               required this.DtMatric,
+               required this.classe,
+               this.className,
+               this.frequence,
+               this.average});
 
   factory StudentMain.fromMap(Map map) {
     return StudentMain(
@@ -32,7 +43,8 @@ class StudentMain {
         DtMatric:  DateTime.parse(map[colDtMatric]),
         classe:    int.parse(map[colClass].toString()),
         className: map[colClassName],
-        frequence: double.parse(map[colFreq].toString()),
+        frequence: map[colFreq] != null ? double.parse(map[colFreq].toString()) : 0,
+        average:   map[colAverage] != null ? double.parse(map[colAverage].toString()) : 0,
     );
   }
 
