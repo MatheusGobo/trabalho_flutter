@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:trabalho_flutter/ui/pages/cards/card_class_main.dart';
+import 'package:trabalho_flutter/ui/pages/cards/card_discipline.dart';
+import 'package:trabalho_flutter/ui/pages/cards/card_student.dart';
+import 'package:trabalho_flutter/ui/pages/cards/card_teacher.dart';
 import 'package:trabalho_flutter/ui/pages/pages.dart';
 import 'package:trabalho_flutter/ui/widget/widgets.dart';
 
@@ -8,6 +12,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       drawer: NavigationDrawerWidget(),
       body: Stack(
         children: [
@@ -49,12 +54,12 @@ class HomePage extends StatelessWidget {
               crossAxisSpacing: 10,
               primary: false,
               children: [
-                cardMenu(context, text: "Lançar Frequencia", image: 'assets/images/frequencia.png', onTap: () => pageNavigation(context, ProfessoresPage())),
-                cardMenu(context, text: "Lançar Notas", image: 'assets/images/notas.png', onTap: () => pageNavigation(context, ProfessoresPage())),
-                cardMenu(context, text: "Professores", image: 'assets/images/professor.png', onTap: () => pageNavigation(context, ProfessoresPage())),
-                cardMenu(context, text: "Alunos", image: 'assets/images/aluno.png', onTap: () => pageNavigation(context, ProfessoresPage())),
-                cardMenu(context, text: "Disciplinas", image: 'assets/images/disciplina.png', onTap: () => pageNavigation(context, ProfessoresPage())),
-                cardMenu(context, text: "Turmas", image: 'assets/images/turma_q.png', onTap: () => pageNavigation(context, ProfessoresPage())),
+                cardMenu(context, text: "Lançar Frequencia", image: 'assets/images/frequencia.png', onTap: () => pageNavigation(context, FrequencePage())),
+                cardMenu(context, text: "Lançar Notas", image: 'assets/images/notas.png', onTap: () => pageNavigation(context, TeacherPage())),
+                cardMenu(context, text: "Professores", image: 'assets/images/professor.png', onTap: () => pageNavigation(context, CardTeacher())),
+                cardMenu(context, text: "Alunos", image: 'assets/images/aluno.png', onTap: () => pageNavigation(context, CardStudent())),
+                cardMenu(context, text: "Disciplinas", image: 'assets/images/disciplina.png', onTap: () => pageNavigation(context, CardDiscipline())),
+                cardMenu(context, text: "Turmas", image: 'assets/images/turma_q.png', onTap: () => pageNavigation(context, CardClassMain())),
               ],
             ),
           ),
