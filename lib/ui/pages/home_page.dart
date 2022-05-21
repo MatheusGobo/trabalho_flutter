@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trabalho_flutter/ui/pages/pages.dart';
 import 'package:trabalho_flutter/ui/widget/widgets.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,8 +34,11 @@ class HomePage extends StatelessWidget {
           Container(
             height: 200,
             padding: EdgeInsets.only(top: 40),
-            child:
-            Text('Unipar', style: TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold)),
+            child: Text('Unipar',
+                style: TextStyle(
+                    fontSize: 40,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold)),
             alignment: Alignment.topCenter,
           ),
           Container(
@@ -45,12 +49,12 @@ class HomePage extends StatelessWidget {
               crossAxisSpacing: 10,
               primary: false,
               children: [
-                cardMenu(text: "Aluno", image: 'assets/images/aluno.png'),
-                cardMenu(text: "Aluno", image: 'assets/images/aluno.png'),
-                cardMenu(text: "Aluno", image: 'assets/images/aluno.png'),
-                cardMenu(text: "Aluno", image: 'assets/images/aluno.png'),
-                cardMenu(text: "Aluno", image: 'assets/images/aluno.png'),
-                cardMenu(text: "Aluno", image: 'assets/images/aluno.png'),
+                cardMenu(context, text: "Lançar Frequencia", image: 'assets/images/frequencia.png', onTap: () => pageNavigation(context, ProfessoresPage())),
+                cardMenu(context, text: "Lançar Notas", image: 'assets/images/notas.png', onTap: () => pageNavigation(context, ProfessoresPage())),
+                cardMenu(context, text: "Professores", image: 'assets/images/professor.png', onTap: () => pageNavigation(context, ProfessoresPage())),
+                cardMenu(context, text: "Alunos", image: 'assets/images/aluno.png', onTap: () => pageNavigation(context, ProfessoresPage())),
+                cardMenu(context, text: "Disciplinas", image: 'assets/images/disciplina.png', onTap: () => pageNavigation(context, ProfessoresPage())),
+                cardMenu(context, text: "Turmas", image: 'assets/images/turma_q.png', onTap: () => pageNavigation(context, ProfessoresPage())),
               ],
             ),
           ),
@@ -59,15 +63,32 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget cardMenu(
+  Widget cardMenu(BuildContext context,
       {required String text, required String image, VoidCallback? onTap}) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      elevation: 4,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [Image.asset(image), Text(text)],
+    return GestureDetector(
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 4,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              image,
+              height: 100,
+            ),
+            Text(text)
+          ],
+        ),
       ),
+      onTap: onTap,
     );
+  }
+
+  void pageNavigation(BuildContext context, Widget page) {
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => page,
+        ));
   }
 }
