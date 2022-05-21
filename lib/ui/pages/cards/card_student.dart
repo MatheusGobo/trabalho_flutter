@@ -174,41 +174,48 @@ class _CardStudentState extends State<CardStudent> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                FieldCardApp(
-                  prefix: 'Status',
-                  text: approvedStudent(
-                    percentFreq: student.frequence!,
-                    media: 60,
-                  ) ? 'Reprovado' : 'Aprovado',
-                  textColor: approvedStudent(
-                    percentFreq: student.frequence!,
-                    media: 60, // TODO Tem que pegar o certo depois de implementado
+            Visibility(
+              visible: (student.frequence! > 0 && student.average! > 0),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              children: [
-                FieldCardApp(
-                  prefix: 'Média: ',
-                  text: 'Implementar', //TODO Retirar depois que implementar
-                ),
-                const SizedBox(
-                  width: 5,
-                ),
-                FieldCardApp(
-                  prefix: 'Frequência',
-                  text: '${student.frequence}%',
-                ),
-              ],
+                  Row(
+                    children: [
+                      FieldCardApp(
+                        prefix: 'Status',
+                        text: approvedStudent(
+                          percentFreq: student.frequence!,
+                          media: student.average!,
+                        ) ? 'Reprovado' : 'Aprovado',
+                        textColor: approvedStudent(
+                          percentFreq: student.frequence!,
+                          media: student.average!, // TODO Tem que pegar o certo depois de implementado
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      FieldCardApp(
+                        prefix: 'Média: ',
+                        text: '${student.average}',
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      FieldCardApp(
+                        prefix: 'Frequência',
+                        text: '${student.frequence}%',
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -216,13 +223,12 @@ class _CardStudentState extends State<CardStudent> {
     );
   }
 
-  bool approvedStudent({required double percentFreq, required double media}) {
-    if (percentFreq < 70) {
-      return false;
-    } else if (media < 60) {
-      return false;
+  bool approvedStudent({double? percentFreq, double? media}) {
+    if (percentFreq != null && media != null) {
+      if (percentFreq < 70 || (media < 60)) {
+        return true;
+      }
     }
-
-    return true;
+    return false;
   }
 }

@@ -47,10 +47,7 @@ class StudentMainHelper {
   Future<List<StudentMain>> getAll() async {
     Database db = await LocalDatabase().db;
 
-    List dados2 = await db.query(Frequence.table);
-    print('freq = ' + dados2.toString());
-
-    List dados = await db.rawQuery('''
+        List dados = await db.rawQuery('''
       SELECT ${StudentMain.table}.${StudentMain.colId},
              ${StudentMain.table}.${StudentMain.colRa},
              ${StudentMain.table}.${StudentMain.colCpf},
@@ -59,10 +56,16 @@ class StudentMainHelper {
              ${StudentMain.table}.${StudentMain.colDtMatric},
              ${StudentMain.table}.${StudentMain.colClass},
              ${ClassMain.table}.${ClassMain.colName} AS ${StudentMain.colClassName},
-             ${Frequence.table}.${Frequence.colPercent} AS ${StudentMain.colFreq}
+             ${Frequence.table}.${Frequence.colPercent} AS ${StudentMain.colFreq},
+             ((${Grade.table}.${Grade.colGrade1} +
+               ${Grade.table}.${Grade.colGrade2} +
+               ${Grade.table}.${Grade.colGrade3} +
+               ${Grade.table}.${Grade.colGrade4}) /CASE ${ClassMain.table}.${ClassMain.colRegime} WHEN 1
+                                                     THEN 4 ELSE 2 END)  AS ${StudentMain.colAverage}
         FROM ${StudentMain.table}
        INNER JOIN ${ClassMain.table} ON (${ClassMain.table}.${ClassMain.colId} = ${StudentMain.table}.${StudentMain.colClass})
         LEFT JOIN ${Frequence.table} ON (${Frequence.table}.${Frequence.colStudent} = ${StudentMain.table}.${StudentMain.colId})
+        LEFT JOIN ${Grade.table} ON (${Grade.table}.${Grade.colStudent} =  ${StudentMain.table}.${StudentMain.colId})
     ''');
 
     return dados.map((e) => StudentMain.fromMap(e)).toList();

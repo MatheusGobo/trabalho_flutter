@@ -5,11 +5,13 @@ import 'package:trabalho_flutter/models/models.dart';
 class GradeHelper {
   static const sqlCreate = '''
     CREATE TABLE ${Grade.table} (
-      ${Grade.colId}       INTEGER PRIMARY KEY AUTOINCREMENT,
-      ${Grade.colStudent}  INTEGER,
-      ${Grade.colClass}    INTEGER,
-      ${Grade.colClass}    INTEGER,
-      ${Grade.colGrade}  REAL,
+      ${Grade.colId}        INTEGER PRIMARY KEY AUTOINCREMENT,
+      ${Grade.colStudent}   INTEGER,
+      ${Grade.colClass}     INTEGER,
+      ${Grade.colGrade1}    REAL,
+      ${Grade.colGrade2}    REAL,
+      ${Grade.colGrade3}    REAL,
+      ${Grade.colGrade4}    REAL,
       FOREIGN KEY(${Grade.colClass}) REFERENCES ${ClassMain.table}(${ClassMain.colId}),
       FOREIGN KEY(${Grade.colStudent}) REFERENCES ${StudentMain.table}(${StudentMain.colId})
     )
