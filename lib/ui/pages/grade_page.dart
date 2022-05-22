@@ -337,14 +337,14 @@ class _GradePageState extends State<GradePage> {
               student: _studentSelect!,
               grade1: double.parse(_nota1Controller.text),
               grade2: double.parse(_nota2Controller.text),
-              grade3: double.parse(_nota3Controller.text),
-              grade4: double.parse(_nota4Controller.text)),
+              grade3: double.tryParse(_nota3Controller.text),
+              grade4: double.tryParse(_nota4Controller.text)),
         );
       } else {
         _gradeStudent!.grade1 = double.parse(_nota1Controller.text);
         _gradeStudent!.grade2 = double.parse(_nota2Controller.text);
-        _gradeStudent!.grade3 = double.parse(_nota3Controller.text);
-        _gradeStudent!.grade4 = double.parse(_nota4Controller.text);
+        _gradeStudent!.grade3 = double.tryParse(_nota3Controller.text);
+        _gradeStudent!.grade4 = double.tryParse(_nota4Controller.text);
 
         _gradeHelper.update(_gradeStudent!);
       }

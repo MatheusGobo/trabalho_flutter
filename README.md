@@ -1,16 +1,31 @@
-# trabalho_flutter
+# Trabalho final de Flutter - Pós UNIPAR.
 
-Trabalho Final.
+# Cadastros
 
-## Getting Started
+- Cadastro de Professor.
+- Cadastro de Disciplinas.
+- Cadastro de Turma.
+- Cadastro de Alunos
 
-This project is a starting point for a Flutter application.
+# Funcionalidades
 
-A few resources to get you started if this is your first Flutter project:
+- Lançamento de frequência.
+- Lançamento de Notas conforme regime da Turma (Semestral ou Anual).
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Regras para Aprovação
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Obter pelo menos 60 pontos de média final.
+- Obter ao menos 70% de presença nas aulas.
+
+# Exibição de Aprovação
+
+Na listagem do aluno quando Notas e Frequências estiverem lançadas será exibido um campo informando se o mesmo está **Aprovado** ou **Reprovado**.
+
+![Aprovado](https://firebasestorage.googleapis.com/v0/b/booktrackerapp-e55e2.appspot.com/o/Exemple%20Aproved.png?alt=media&token=ca8ba25c-727d-4636-8e3f-a8568fd1bd62)
+
+![Reprovado](https://firebasestorage.googleapis.com/v0/b/booktrackerapp-e55e2.appspot.com/o/Exemple%20Reproved.png?alt=media&token=01ddc617-e7e2-4ddd-89da-794e5cca298a)
+
+# Sobre
+Para este projeto utilizamos Flutter versão 2.10.4.
+Todas as telas utilizamos o Material como pacote de Widgets.
+Desenvolvemos alguns widgets próprios como o TextInput personalizado.
