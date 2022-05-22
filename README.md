@@ -1,4 +1,4 @@
-# Trabalho final de Flutter - Pós UNIPAR.
+# Trabalho final de Flutter - Desenvolvimento de Aplicações Web e Mobile.
 
 # Cadastros
 
