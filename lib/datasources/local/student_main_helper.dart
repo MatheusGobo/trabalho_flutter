@@ -28,8 +28,8 @@ class StudentMainHelper {
     Database db = await LocalDatabase().db;
 
     await db.update(StudentMain.table, studentMain.toMap(),
-        where: '${StudentMain.colRa} = ? ',
-        whereArgs: [studentMain.ra]
+        where: '${StudentMain.colId} = ? ',
+        whereArgs: [studentMain.id]
     );
 
     return studentMain;
@@ -59,9 +59,10 @@ class StudentMainHelper {
              ${Frequence.table}.${Frequence.colPercent} AS ${StudentMain.colFreq},
              ((${Grade.table}.${Grade.colGrade1} +
                ${Grade.table}.${Grade.colGrade2} +
-               ${Grade.table}.${Grade.colGrade3} +
-               ${Grade.table}.${Grade.colGrade4}) /CASE ${ClassMain.table}.${ClassMain.colRegime} WHEN 1
-                                                     THEN 4 ELSE 2 END)  AS ${StudentMain.colAverage}
+               COALESCE(${Grade.table}.${Grade.colGrade3}, 0) +
+               COALESCE(${Grade.table}.${Grade.colGrade4}, 0)) / CASE ${ClassMain.table}.${ClassMain.colRegime} WHEN 1
+                                                                 THEN 4
+                                                                 ELSE 2 END) AS ${StudentMain.colAverage}
         FROM ${StudentMain.table}
        INNER JOIN ${ClassMain.table} ON (${ClassMain.table}.${ClassMain.colId} = ${StudentMain.table}.${StudentMain.colClass})
         LEFT JOIN ${Frequence.table} ON (${Frequence.table}.${Frequence.colStudent} = ${StudentMain.table}.${StudentMain.colId})

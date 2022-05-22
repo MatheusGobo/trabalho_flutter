@@ -1,7 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:trabalho_flutter/datasources/local/local.dart';
-import 'package:trabalho_flutter/models/models.dart';
 
 class LocalDatabase {
   static const String _nameDb = 'unipar_cns.db';
@@ -23,7 +22,7 @@ class LocalDatabase {
 
     return await openDatabase(
         pathDb,
-        version: 6, //TODO aqui é a Versão
+        version: 1,
         onCreate: (Database db, int version) async {
           await db.execute(TeacherHelper.sqlCreate);
           await db.execute(DisciplineHelper.sqlCreate);
@@ -34,10 +33,9 @@ class LocalDatabase {
           await db.execute(GradeHelper.sqlCreate);
         },
         onUpgrade: (Database db, int oldVersion, int newVersion) async {
-          if (oldVersion == 2) {
+          /*if (oldVersion == 2) {
             await db.execute(GradeHelper.sqlCreate);
-          }
-          //TODO Aqui se coloca demais tabelas, não pode esquecer de mudar versão do banco
+          } */
         },
     );
   }

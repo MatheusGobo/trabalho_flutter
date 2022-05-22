@@ -26,8 +26,8 @@ class Grade{
       classe:   int.parse(map[colClass].toString()),
       grade1:   double.parse(map[colGrade1].toString()),
       grade2:   double.parse(map[colGrade2].toString()),
-      grade3:   map[colGrade3] != null ? double.parse(map[colGrade3].toString()) : 0,
-      grade4:   map[colGrade4] != null ? double.parse(map[colGrade4].toString()) : 0,
+      grade3:   map[colGrade3] != null ? double.parse(map[colGrade3].toString()) : 0.0,
+      grade4:   map[colGrade4] != null ? double.parse(map[colGrade4].toString()) : 0.0,
     );
   }
 
@@ -39,7 +39,7 @@ class Grade{
       colGrade1   : grade1,
       colGrade2   : grade2,
       colGrade3   : grade3,
-      colGrade4   : grade4
+      colGrade4   : grade4,
     };
   }
 
